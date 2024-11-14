@@ -141,7 +141,9 @@ export const forgotPassword = async (req, res) => {
         .json({ success: false, message: "User not found" });
     }
     //Generate the password reset token here
-    const resetToken = crypto.randomBytes(20);
+    const resetToken = crypto.randomBytes(20).toString("hex");
+    console.log(resetToken);
+
     const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000;
 
     user.resetPasswordToken = resetToken;
